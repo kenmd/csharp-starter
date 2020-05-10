@@ -73,12 +73,19 @@ dotnet lambda invoke-function MyFunction --payload "Just Checking If Everything 
 * Command Palette > NuGet Package Manager > search and add
   - `Microsoft.Data.SqlClient`
   - `Dapper`
+  - `Dapper.SimpleCRUD`
 * update variables in `aws-lambda-tools-defaults.json`
   - `function-subnets`
   - `function-security-groups`
   - `environment-variables`
 * You should encrypt DB password
   - see https://www.1strategy.com/blog/2019/02/06/connecting-to-an-rds-database-with-lambda/
+
+```bash
+# also possible to add from cli
+cd src/MyFunction/
+dotnet add package Dapper # for example
+```
 
 
 ## Clean up

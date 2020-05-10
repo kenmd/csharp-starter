@@ -33,10 +33,14 @@ namespace MyFunction
         {
             using (IDbConnection db = new SqlConnection(Util.ConnString()))
             {
-                List<Person> people = new List<Person>();
+                db.Open();
+                db.ChangeDatabase("db_example");
 
-                string query = "SELECT ID, NAME FROM PERSON";
-                people = db.Query<Person>(query).ToList();
+                var person = db.Get<Person>(2);
+
+                LambdaLogger.Log($"Person {person.ID}: {person.NAME}");
+
+                var people = db.GetList<Person>();
 
                 foreach (var p in people)
                 {
