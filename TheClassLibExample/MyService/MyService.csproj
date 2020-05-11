@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>TheClassLibExample.MyService</PackageId>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.1.5</Version>
+    <Authors>Ore</Authors>
+    <Company>Example.Com</Company>
+    <Product>TheClassLibExample.MyService</Product>
+    <Description>An example library that does very little</Description>
+  </PropertyGroup>
+
+</Project>

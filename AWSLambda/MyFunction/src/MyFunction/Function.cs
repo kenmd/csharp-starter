@@ -6,6 +6,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using Amazon.Lambda.Core;
 using Dapper;
+using MyService;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.LambdaJsonSerializer))]
@@ -25,6 +26,8 @@ namespace MyFunction
             LambdaLogger.Log("Input: " + input);
 
             ConnectToDatabase();
+
+            LambdaLogger.Log($"From custom class library: IsEven(2) {SampleCalcUtil.IsEven(2)}");
 
             return input?.ToUpper();
         }

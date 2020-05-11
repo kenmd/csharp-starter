@@ -3,12 +3,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AWSProjectType>Lambda</AWSProjectType>
+    <RestoreSources>$(RestoreSources);../../../../TheClassLibExample/MyService/bin/Debug;https://api.nuget.org/v3/index.json</RestoreSources>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0"/>
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="1.0.0"/>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2"/>
-    <PackageReference Include="Dapper" Version="2.0.35"/>
-    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1"/>
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0.1" />
+    <PackageReference Include="TheClassLibExample.MyService" Version="0.1.5" />
   </ItemGroup>
 </Project>
