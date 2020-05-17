@@ -17,16 +17,17 @@ dotnet new -i Amazon.Lambda.Templates
 # create Lambda
 dotnet new lambda.EmptyFunction --name MyFunction
 
-cd MyFunction/src/MyFunction
-dotnet restore
-# or click restore as VSCode suggested
-
 cd MyFunction/
+dotnet restore src/MyFunction
+# or click restore as VSCode suggested
 code . 
 
 # for logging test, try adding one line
 # LambdaLogger.Log("Input: " + input);
 # in Function.cs FunctionHandler(...)
+
+# start local SQL Server in local-database/local-mssql
+# run migration in local-database/flyway-mssql
 
 # run Test
 export $(cat env.json | jq -r '.MyFunction | to_entries[] | "\(.key)=\(.value)"')
@@ -45,12 +46,14 @@ dotnet tool install -g Amazon.Lambda.Tools
 # dotnet tool update -g Amazon.Lambda.Tools
 
 export AWS_PROFILE=your_profile
-cd MyFunction/src/MyFunction
+cd src/MyFunction
 
 # check available options for deploy
 dotnet lambda help deploy-function
 # you can add deploy options in aws-lambda-tools-defaults.json
 # https://aws.amazon.com/blogs/developer/deploying-net-core-aws-lambda-functions-from-the-command-line/
+
+# before deploy, update values in aws-lambda-tools-defaults.json
 
 # build and deploy
 dotnet lambda deploy-function MyFunction # --function-role your_role
