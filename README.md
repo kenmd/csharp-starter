@@ -1,6 +1,6 @@
-# C# Starter using VSCode
+# C# Starter Sample Code Remix
 
-C# basic examples to connect SQL Server
+C# simple examples intended to be a quick starter code
 
 
 ## Setup Local SQL Server
@@ -22,3 +22,25 @@ C# basic examples to connect SQL Server
 * AWS Lambda C# basic example
 * Lambda connecting to SQL Server
 * run `dotnet restore` in `src/MyFunction`
+
+## [AWSCDK](AWSCDK)
+
+* AWS Cloud Development Kit simple example
+* add CloudWatch Event to trigger the Lambda
+
+## [TheClassLibExample](TheClassLibExample)
+
+* simple Class Library Example with Unit Test
+* setup Local NuGet and install Local NuGet package
+
+## [CoreConsoleApp](CoreConsoleApp)
+
+* .NET Core Console sample app with DI, Logging and JSON settings
+
+## [ConsoleEventDemo](ConsoleEventDemo)
+
+* simple demo app of Delegate and Event
+
+## [AsyncAwaitDemo](AsyncAwaitDemo)
+
+* simple demo app of async/await
