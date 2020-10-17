@@ -1,7 +1,9 @@
 # https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+.vs
 bin
 obj
 out
 Debug
 Release
+coverage

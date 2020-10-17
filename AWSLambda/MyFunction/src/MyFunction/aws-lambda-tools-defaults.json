@@ -12,9 +12,10 @@
   "function-runtime": "dotnetcore3.1",
   "function-memory-size": 256,
   "function-timeout": 30,
+  "function-name": "MyFunction",
   "function-handler": "MyFunction::MyFunction.Function::FunctionHandler",
   "function-role": "your_role",
   "function-subnets": "subnet-xxxxxxxxxx,subnet-xxxxxxxxxx",
   "function-security-groups": "sg-xxxxxxxxxx",
-  "environment-variables": "DB_SERVER=127.0.0.1;DB_DATABASE=db_example;DB_USERNAME=sa;DB_PASSWORD=Password1"
+  "environment-variables": "TZ=Asia/Tokyo;DB_SERVER=127.0.0.1;DB_DATABASE=db_example;DB_USERNAME=sa;DB_PASSWORD=Password1"
 }

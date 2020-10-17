@@ -9,7 +9,7 @@ using Dapper;
 using MyService;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.LambdaJsonSerializer))]
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace MyFunction
 {
@@ -21,11 +21,11 @@ namespace MyFunction
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string FunctionHandler(string input, ILambdaContext _)
         {
             LambdaLogger.Log("Input: " + input);
 
-            ConnectToDatabase();
+            // ConnectToDatabase();
 
             LambdaLogger.Log($"From custom class library: IsEven(2) {SampleCalcUtil.IsEven(2)}");
 
@@ -34,7 +34,7 @@ namespace MyFunction
 
         private void ConnectToDatabase()
         {
-            using (IDbConnection db = new SqlConnection(Util.ConnString()))
+            using (IDbConnection db = new SqlConnection(DBUtil.ConnString()))
             {
                 db.Open();
                 db.ChangeDatabase("db_example");
