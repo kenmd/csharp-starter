@@ -5,7 +5,7 @@ using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.Events;
 using Amazon.CDK.AWS.Events.Targets;
-
+using Amazon.CDK.AWS.EC2;
 
 namespace CdkWorkshop
 {
@@ -20,9 +20,18 @@ namespace CdkWorkshop
                 Value = role.RoleName
             });
 
+            var vpcId = System.Environment.GetEnvironmentVariable("VPC_ID");
+            var theVpc = findVpcByVpcId(vpcId);
+            var sg = createLambdaSecurityGroup(theVpc);
+
+            new CfnOutput(this, "LambdaSecurityGroupName", new CfnOutputProps()
+            {
+                Value = sg.SecurityGroupName
+            });
+
             var function = findFunctionByName("MyFunction");
 
-            new CfnOutput(this, "MyFunction.RoleArn", new CfnOutputProps()
+            new CfnOutput(this, "FunctionName", new CfnOutputProps()
             {
                 Value = function.FunctionName
             });
@@ -53,6 +62,31 @@ namespace CdkWorkshop
             return role;
         }
 
+        private SecurityGroup createLambdaSecurityGroup(IVpc theVpc)
+        {
+            var sg = new SecurityGroup(this, "LambdaSG", new SecurityGroupProps()
+            {
+                Vpc = theVpc,
+                SecurityGroupName = "LambdaSG",
+            });
+
+            return sg;
+        }
+
+        private IVpc findVpcByVpcId(string vpcId)
+        {
+            // How to import existing VPC
+            // https://qiita.com/kai_kou/items/e35fd8c6af7dff9f2624
+            // see difference of fromLookup and fromVpcAttributes
+            // https://garbe.io/blog/2019/09/20/hey-cdk-how-to-use-existing-resources/
+            var vpc = Vpc.FromLookup(this, "ExistingVPC", new VpcLookupOptions()
+            {
+                VpcId = vpcId
+            });
+
+            return vpc;
+        }
+
         internal IFunction findFunctionByName(string name)
         {
             var region = Stack.Of(this).Region;
@@ -77,6 +111,14 @@ namespace CdkWorkshop
             Rule rule = new Rule(this, "Rule", ruleProps);
 
             LambdaFunctionProps props = new LambdaFunctionProps();
+
+            // if the input is json
+            // var jsonDict = new Dictionary<string, string>
+            // {
+            //     { "Key", "Value" },
+            // };
+            // props.Event = RuleTargetInput.FromObject(jsonDict);
+
             props.Event = RuleTargetInput.FromText("Hello");
 
             rule.AddTarget(new LambdaFunction(function, props));
