@@ -23,6 +23,12 @@ C# simple examples intended to be a quick starter code
 * Lambda connecting to SQL Server
 * run `dotnet restore` in `src/MyFunction`
 
+## [AWSLambda.Net5](AWSLambda.Net5)
+
+* AWS Lambda initial setup with the latest .NET 5
+* using new feature - Docker Container Image Support
+* enable debug the locally running container from VSCode
+
 ## [AWSCDK](AWSCDK)
 
 * AWS Cloud Development Kit simple example
